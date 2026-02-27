@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Group 1</title>
+    <link rel="stylesheet" href="../style-example-2.css">
+
+    <style>
+        main {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(500px, 100%), 1fr));
+            gap: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Group 1</h1>
+        <nav>
+            <a href="/">home</a>
+            <a href="../people/">people</a>
+            <a href="../proposals/">proposals</a>
+            <a href="../teams/">teams</a>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Movie Night Poll</h2>
+            <p>
+                Proposed by: <a href="../people/P2435706.html">Temmy</a>
+                <a href="../people/p2882533.html">Kanishk</a>
+                <a href="../people/P2891025.html">Abdishakur</a>
+            </p>
+            <h3>Brief Description</h3>
+            <p>
+                CineVote is a web-based application that allows users to create movie night sessions, 
+                suggest films, and vote on what to watch. The application simplifies group decision-making 
+                by providing a structured voting system and displaying the winning movie.
+            </p>
+            <h3>User Requirements</h3>
+            <ul>
+                <li>As a user, I want to create an account so that I can join movie sessions.</li>
+                <li>As a user, I want to create a movie night session.</li>
+                <li>As a user, I want to add movie suggestions.</li>
+                <li>As a user, I want to vote for a movie.</li>
+                <li>As a user, I want to see which movie has the most votes.</li>
+                <li>As a user, I want to view past movie sessions.</li>
+            </ul>
+            <h3>What can the users do in the application?</h3>
+            <p>
+                <ul>
+                    <li>Register and log into the system</li>
+                    <li>Create a new movie night session</li>
+                    <li>Join an existing session using a session code</li>
+                    <li> Add movie suggestions to a session</li>
+                    <li>View all suggested movies</li>
+                    <li>Vote for one movie per session</li>
+                    <li>See real-time vote counts</li>
+                    <li>View the winning movie when voting closes</li>
+                    <li>View a history of past sessions</li>
+                    <li>The system supports full CRUD functionality:</li>
+                     <ul>
+                    <li>Create sessions and movies</li>
+                    <li>Read/view sessions and results</li>
+                    <li>Update movie suggestions (optional)</li>
+                    <li>Delete sessions or suggestions (if host)</li>
+                     </ul>
+                </ul>
+            </p>
+            <p>
+                
+            </p>
+            <h3>Why do users use the application?</h3>
+            <ul>
+                <li>Avoid long and frustrating debates about what movies to watch</li>
+                <li>Make group decisions more fair and democratic</li>
+                <li>Save time when organising movie nights</li>
+                <li>Create a structured and organised voting process</li>
+                <li>Keep a record/log of past movie nights</li>
+                <li>Individual programme page</li>
+            </ul>
+            <li>This application simplifies group-decision making and improves the overall movie night experience</li>
+        </section>
+        <section>
+            <h3>Main roles within the application:</h3>
+            <li>Registered Users</li>
+            <ul>
+                <li>Create Accounts</li>
+                <li>Join movie sessions</li>
+                <li>Suggest Films</li>
+                <li>Vote on movies</li>
+            </ul>
+            <li>Session Creator (Host)</li>
+            <ul>
+                <li>Creates a movie night session</li>
+                <li>Shares the session code with others</li>
+                <li>Can close voting</li>
+                <li>Views final results</li>
+            </ul>
+            <li>All users must be registered to participate in voting</li>
+        </section>
+        <section>
+            <h3>Data Requirements</h3>
+            <li>The application will store the following types of data:</li>
+            <li>User Data</li>
+            <ul>
+                <li>Username</li>
+                <li>Email address</li>
+                <li>Encrypted password</li>
+                <li>Account creation date</li>
+            </ul>
+            <li>Session Data</li>
+            <ul>
+                <li>Session Name</li>
+                <li>Unique Session Code</li>
+                <li>Creator ID</li>
+                <li>Creation Date</li>
+                <li>Active/inactive status</li>
+            </ul>
+            <li>Movie Data</li>
+            <ul>
+                <li>Movie Title</li>
+                <li>Genre</li>
+                <li>Session ID</li>
+                <li>User who added the movie</li>
+            </ul>
+            <li>Vote Data</li>
+            <ul>
+                <li>User ID</li>
+                <li>Movie ID</li>
+                <li>Session ID</li>
+                <li>Timestamp of vote</li>
+            </ul>
+            <li>Optional Comment Data</li>
+            <ul>
+                <li>User ID</li>
+                <li>Session ID</li>
+                <li>Message Content</li>
+                <li>Timestamp</li>
+            </ul>
+
+        </section>
+        <section>
+            <h3>Proposed Database Structure</h3>
+            <li>Users</li>
+            <ul>
+                <li>user_id (PK)</li>
+                <li>username</li>
+                <li>email</li>
+                <li>password_hash</li>
+                <li>created_at</li>
+            </ul>
+            <li>Sessions</li>
+            <ul>
+                <li>session_id (PK)</li>
+                <li>session_name</li>
+                <li>created_by (FK -> users)</li>
+                <li>session_code</li>
+                <li>created_at</li>
+                <li>is_active</li>
+            </ul>
+            <li>Movies</li>
+            <ul>
+                <li>movie_id (PK)</li>
+                <li>session_id (FK)</li>
+                <li>title</li>
+                <li>genre</li>
+                <li>added_by (FK -> users)</li>
+                <li>created_at</li>
+            </ul>
+            <li>Votes</li>
+            <ul>
+                <li>vote_id (PK)</li>
+                <li>user_id (FK)</li>
+                <li>movie_id (FK)</li>
+                <li>session_id (FK)</li>
+            </ul>
+            <li>Comments (optional)</li>
+            <ul>
+                <li>comments_id (PK)</li>
+                <li>user_id (FK)</li>
+                <li>session_id (FK)</li>
+                <li>message</li>
+                <li>created_at</li>
+            </ul>
+        </section>
+        <section>
+            <h3>Pages we will need</h3>
+            <ul>
+                <li>index.html (homepage)</li>
+                <li>register.html</li>
+                <li>login.html</li>
+                <li>dashboard.html</li>
+                <li>create-session.html</li>
+                <li>add-movie.html</li>
+                <li>results.html</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Implemented by ATK</h2>
+                <li><a href="../teams/ATK/index.html">ATK</a></li>
+        </section>
+    </main>
+</body>
+
+</html>
